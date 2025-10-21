@@ -20,11 +20,21 @@ body {
     border: solid, 1px, red;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
 .card {
     background-color: white;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
     width: 750px;
     display: flex;
     flex-direction: row;
+    border: solid, 1px, gray; /* Adicionado borda*/
+    margin-bottom: 8px; /* Adicionado margem bottom*/
 }
 
 .card-right {
@@ -39,21 +49,20 @@ body {
     padding: 10px;
 }
 
-.card-left > span {
+.card-left>span {
     color: rgb(82, 81, 81);
 }
 
-.card-left > h1 {
+.card-left>h1 {
     margin-top: 15px;
     font-size: 25px;
 }
 
-.card-left > p {
+.card-left>p {
     color: rgb(67, 67, 67);
-} 
+}
 
-.card-right > img {
+.card-right>img {
     width: 180px;
     margin: 30px;
 }
-
