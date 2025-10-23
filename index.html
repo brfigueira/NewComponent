@@ -4,16 +4,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vagas de Emprego</title>
+    <title>Cadastro de Vagas de Emprego</title>
     <link rel="stylesheet" href="./card.css">
     <script src="./src/components/CardNews.js" defer></script>
+    <script src="./src/js/app.js" defer></script>
 </head>
 
 <body>
+
     <div class="container">
-     <card-news></card-news>   
-     <card-news></card-news>
-     <card-news></card-news>
+        <!-- Formulário de Cadastro -->
+        <form id="job-form" class="job-form">
+            <h2>Cadastrar Nova Vaga</h2>
+            
+            <label for="anunciante-nome">Nome do Anunciante:</label>
+            <input type="text" id="anunciante-nome" required value="Nome do Requerente">
+
+            <label for="anunciante-foto">URL da Foto do Anunciante (Perfil):</label>
+            <input type="text" id="anunciante-foto" required value="https://via.placeholder.com/20/FF0000/FFFFFF?text=MV">
+
+            <label for="vaga-titulo">Título da Vaga (H1):</label>
+            <input type="text" id="vaga-titulo" required placeholder="Ex: Desenvolvedor Frontend Sênior">
+
+            <label for="vaga-setor">Setor da Vaga (Span):</label>
+            <input type="text" id="vaga-setor" required placeholder="Ex: Tecnologia / TI">
+
+            <label for="empresa-imagem">URL da Imagem da Empresa (Card):</label>
+            <input type="text" id="empresa-imagem" required value="https://via.placeholder.com/180x180?text=Logo+Empresa">
+
+            <label for="vaga-descricao">Descrição da Vaga (Parágrafo):</label>
+            <textarea id="vaga-descricao" rows="5" required placeholder="Detalhes da vaga, requisitos e benefícios..."></textarea>
+
+            <button type="submit">Publicar Vaga</button>
+        </form>
+
+        <!-- Lista de Vagas -->
+        <div class="job-list" id="job-list">
+            <!-- As vagas serão inseridas aqui pelo JavaScript -->
+        </div>
+        
     </div>
 </body>
 
