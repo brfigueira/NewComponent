@@ -1,13 +1,26 @@
+// Arquivo: src/components/CardNews.js
+
 class CardNews extends HTMLElement {
     constructor() {
         super();
+        
+        // O constructor agora só cria o "Shadow DOM" (a raiz)
+        // Ele não constrói mais o card aqui.
+        this.attachShadow({ mode: "open" }); 
+    }
 
-        const shadow = this.attachShadow({ mode: "open" });
-        shadow.appendChild(this.build());
-        shadow.appendChild(this.styles());
+    // Este método é chamado AUTOMATICAMENTE pelo navegador
+    // QUANDO o elemento é adicionado na tela (ex: com appendChild).
+    connectedCallback() {
+        // Agora sim, chamamos o build e o styles,
+        // pois os atributos já foram setados pelo app.js
+        this.shadowRoot.appendChild(this.build());
+        this.shadowRoot.appendChild(this.styles());
     }
 
     build() {
+        // O seu método build() original está perfeito.
+        // Não precisa mudar nada dentro dele.
         const componentRoot = document.createElement("div");
         componentRoot.setAttribute("class", "card");
 
@@ -16,6 +29,7 @@ class CardNews extends HTMLElement {
         cardLeft.setAttribute("class", "card-left");
 
         const span = document.createElement("span");
+        // Agora, this.getAttribute() vai funcionar!
         span.textContent = this.getAttribute("setor") || "Setor não informado";
 
         const h1 = document.createElement("h1");
@@ -59,6 +73,8 @@ class CardNews extends HTMLElement {
     }
 
     styles() {
+        // O seu método styles() original está perfeito.
+        // Não precisa mudar nada dentro dele.
         const style = document.createElement("style");
         style.textContent = `
             .card {
