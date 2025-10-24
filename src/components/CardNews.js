@@ -55,6 +55,13 @@ class CardNews extends HTMLElement {
         cardLeft.appendChild(h1);
         cardLeft.appendChild(p);
         cardLeft.appendChild(anunciante);
+        const editButton = document.createElement("button");
+        editButton.setAttribute("class","edit-button");
+        editButton.textContent="Editar";
+
+        editButton.addEventListener("click",()=>{
+
+        })
 
         // card-right
         const cardRight = document.createElement("div");

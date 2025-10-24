@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         console.log("Formulário enviado (submit).");
 
         const newJob = {
+            id: Date.now(),
             anuncianteNome: document.getElementById
             ('anunciante-nome').value,
             anuncianteFoto: document.getElementById
