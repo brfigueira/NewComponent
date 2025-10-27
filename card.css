@@ -4,7 +4,10 @@ body {
     display: flex;
     align-items: center;
     margin: 0;
-    height: 100vh;
+    padding-top: 40px; /* Adicionado padding para não cortar no topo */
+    padding-bottom: 40px; /* Adicionado padding para o scroll */
+    min-height: 100vh; /* Garante altura mínima */
+    height: auto; /* Permite o body crescer */
     flex-direction: column;
 }
 
@@ -15,60 +18,15 @@ body {
     box-sizing: border-box;
 }
 
-.card-left img {
-    width: 20px;
-    border-radius: 50%;
-    border: solid, 1px, red;
-}
-
 .container {
     display: flex;
     flex-direction: column;
 }
 
-.card {
-    background-color: white;
-    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    width: 750px;
-    display: flex;
-    flex-direction: row;
-    border: solid, 1px, gray; /* Adicionado borda*/
-    margin-bottom: 8px; /* Adicionado margem bottom*/
-}
+/* Nota: Os estilos do ".card" estão no CardNews.js (Shadow DOM) */
 
-.card-right {
-    align-items: center;
-    justify-content: center;
-}
 
-.card-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 10px;
-}
-
-.card-left>span {
-    color: rgb(82, 81, 81);
-}
-
-.card-left>h1 {
-    margin-top: 15px;
-    font-size: 25px;
-}
-
-.card-left>p {
-    color: rgb(67, 67, 67);
-}
-
-.card-right>img {
-    width: 180px;
-    margin: 30px;
-}
-
-/* Estilos adicionais para o formulário e a lista de vagas */
+/* Estilos para o formulário e a lista de vagas */
 .job-form {
     background-color: white;
     padding: 20px;

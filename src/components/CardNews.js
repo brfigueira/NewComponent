@@ -3,33 +3,27 @@
 class CardNews extends HTMLElement {
     constructor() {
         super();
-        
-        // O constructor agora só cria o "Shadow DOM" (a raiz)
-        // Ele não constrói mais o card aqui.
-        this.attachShadow({ mode: "open" }); 
+        // Cria a "raiz" do Shadow DOM
+        this.attachShadow({ mode: "open" });
     }
 
-    // Este método é chamado AUTOMATICAMENTE pelo navegador
-    // QUANDO o elemento é adicionado na tela (ex: com appendChild).
+    // Chamado automaticamente quando o elemento é adicionado ao DOM
     connectedCallback() {
-        // Agora sim, chamamos o build e o styles,
-        // pois os atributos já foram setados pelo app.js
+        // Constrói o HTML interno e os estilos
         this.shadowRoot.appendChild(this.build());
         this.shadowRoot.appendChild(this.styles());
     }
 
     build() {
-        // O seu método build() original está perfeito.
-        // Não precisa mudar nada dentro dele.
         const componentRoot = document.createElement("div");
         componentRoot.setAttribute("class", "card");
 
-        // card-left
+        // --- card-left ---
         const cardLeft = document.createElement("div");
         cardLeft.setAttribute("class", "card-left");
 
         const span = document.createElement("span");
-        // Agora, this.getAttribute() vai funcionar!
+        // Lê os atributos definidos no app.js
         span.textContent = this.getAttribute("setor") || "Setor não informado";
 
         const h1 = document.createElement("h1");
@@ -38,6 +32,7 @@ class CardNews extends HTMLElement {
         const p = document.createElement("p");
         p.textContent = this.getAttribute("descricao") || "Descrição da vaga não informada";
 
+        // Div para informações do anunciante
         const anunciante = document.createElement("div");
         anunciante.setAttribute("class", "anunciante");
 
@@ -51,19 +46,31 @@ class CardNews extends HTMLElement {
         anunciante.appendChild(imgAnunciante);
         anunciante.appendChild(nomeAnunciante);
 
+        // --- Botão Editar ---
+        const editButton = document.createElement("button");
+        editButton.setAttribute("class", "edit-button");
+        editButton.textContent = "Editar";
+
+        // Adiciona o "ouvinte" de clique no botão
+        editButton.addEventListener("click", () => {
+            // Dispara um evento customizado chamado 'edit-job'
+            this.dispatchEvent(new CustomEvent("edit-job", {
+                detail: {
+                    id: this.getAttribute("id") // Envia o ID da vaga no evento
+                },
+                bubbles: true,  // Permite o evento "borbulhar" para fora
+                composed: true // Permite o evento "atravessar" a barreira do Shadow DOM
+            }));
+        });
+
+        // Adiciona os elementos ao card-left
         cardLeft.appendChild(span);
         cardLeft.appendChild(h1);
         cardLeft.appendChild(p);
         cardLeft.appendChild(anunciante);
-        const editButton = document.createElement("button");
-        editButton.setAttribute("class","edit-button");
-        editButton.textContent="Editar";
+        cardLeft.appendChild(editButton); // Adiciona o botão
 
-        editButton.addEventListener("click",()=>{
-
-        })
-
-        // card-right
+        // --- card-right ---
         const cardRight = document.createElement("div");
         cardRight.setAttribute("class", "card-right");
 
@@ -73,6 +80,7 @@ class CardNews extends HTMLElement {
 
         cardRight.appendChild(imgEmpresa);
 
+        // Adiciona tudo à raiz do componente
         componentRoot.appendChild(cardLeft);
         componentRoot.appendChild(cardRight);
 
@@ -80,8 +88,7 @@ class CardNews extends HTMLElement {
     }
 
     styles() {
-        // O seu método styles() original está perfeito.
-        // Não precisa mudar nada dentro dele.
+        // Define os estilos encapsulados para este componente
         const style = document.createElement("style");
         style.textContent = `
             .card {
@@ -92,7 +99,7 @@ class CardNews extends HTMLElement {
                 width: 750px;
                 display: flex;
                 flex-direction: row;
-                border: solid 1px gray;
+                border: 1px solid gray; /* Sintaxe de borda corrigida */
                 margin-bottom: 8px;
             }
 
@@ -107,7 +114,7 @@ class CardNews extends HTMLElement {
                 flex-direction: column;
                 justify-content: center;
                 padding: 10px;
-                flex-grow: 1;
+                flex-grow: 1; /* Ocupa o espaço restante */
             }
 
             .card-left > span {
@@ -151,9 +158,26 @@ class CardNews extends HTMLElement {
                 font-size: 12px;
                 color: #333;
             }
+
+            /* Estilo do Botão Editar */
+            .edit-button {
+                background-color: #f0ad4e; /* Laranja */
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                cursor: pointer;
+                font-size: 12px;
+                margin-top: 10px;
+                width: 70px; /* Largura fixa */
+                border-radius: 4px; /* Borda arredondada */
+            }
+            .edit-button:hover {
+                background-color: #ec971f;
+            }
         `;
         return style;
     }
 }
 
+// Define o elemento customizado <card-news>
 customElements.define("card-news", CardNews);

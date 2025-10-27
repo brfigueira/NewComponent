@@ -5,8 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Vagas de Emprego</title>
+    <!-- Link para o CSS global -->
     <link rel="stylesheet" href="./card.css">
+    
+    <!-- Scripts (defer garante que só executem após o HTML carregar) -->
+    <!-- Define o Web Component <card-news> -->
     <script src="./src/components/CardNews.js" defer></script>
+    <!-- Contém a lógica principal (CRUD) -->
     <script src="./src/js/app.js" defer></script>
 </head>
 
@@ -19,31 +24,31 @@
             
             <label for="anunciante-nome">Nome do Anunciante:</label>
             <input type="text" id="anunciante-nome" required 
-            placeholder="Nome do Requerente">
+                   placeholder="Nome do Requerente">
 
             <label for="anunciante-foto">
                 URL da Foto do Anunciante (Perfil):</label>
             <input type="text" id="anunciante-foto" 
-            required placeholder="https://seulinkaqui.com">
+                   required placeholder="https://seulinkaqui.com">
 
             <label for="vaga-titulo">Título da Vaga (H1):</label>
             <input type="text" id="vaga-titulo" 
-            required placeholder="Ex: Desenvolvedor Frontend Sênior">
+                   required placeholder="Ex: Desenvolvedor Frontend Sênior">
 
             <label for="vaga-setor">Setor da Vaga (Span):</label>
             <input type="text" id="vaga-setor" 
-            required placeholder="Ex: Tecnologia / TI">
+                   required placeholder="Ex: Tecnologia / TI">
 
             <label for="empresa-imagem">
                 URL da Imagem da Empresa (Card):</label>
             <input type="text" id="empresa-imagem" 
-            required placeholder="https://linkDaSuaImagemAqui.com">
+                   required placeholder="https://linkDaSuaImagemAqui.com">
 
             <label for="vaga-descricao">
                 Descrição da Vaga (Parágrafo):</label>
             <textarea id="vaga-descricao" rows="5" 
-            required placeholder="Detalhes da vaga, requisitos e benefícios...">
-        </textarea>
+                   required placeholder="Detalhes da vaga, requisitos e benefícios...">
+            </textarea>
 
             <button type="submit">Publicar Vaga</button>
         </form>
